@@ -6,7 +6,7 @@ import {
 import Card from './Card.js'
 
 const apiBaseUrl = 'https://newsapi.org/v2/'
-const apiKey = process.env.NEWS_API_KEY
+const apiKey = NEWS_API_KEY
 const MS_PER_DAY = 1000 * 60 * 60 * 24
 
 export default class App extends Component {
