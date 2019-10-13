@@ -1,0 +1,55 @@
+.container {
+  max-width: 50rem;
+  padding: 2rem;
+}
+
+button {
+  margin-bottom: 0;
+}
+
+.search-button {
+  margin-right: 1rem;
+}
+
+.container .news-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  border: 0.1rem solid #d1d1d1;
+  border-radius: 0.4rem;
+  padding: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.card h4 {
+  margin: 0;
+}
+
+.card hr {
+  margin: 1.2rem 0;
+}
+
+.card .card-header .image-container .loader {
+  position: absolute;
+}
+
+.card .card-header .image-container .loader.hidden {
+  display: none;
+}
+
+.card .card-header .image-container {
+  position: relative;
+  margin-bottom: 1.6rem;
+}
+
+.card .card-header .image-container img {
+  border-radius: 0.4rem;
+}
+
+.card .card-body .card-body-footer {
+  display: flex;
+  justify-content: space-between;
+}
