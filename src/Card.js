@@ -21,11 +21,18 @@ const getFormattedDate = date => {
 }
 
 export default class Card extends Component {
+  renderImage = () =>
+    this.props.urlToImage
+      ? html`
+          <${Image} src=${this.props.urlToImage} />
+        `
+      : null
+
   render() {
     return html`
       <div class="card">
         <div class="card-header">
-          <${Image} src=${this.props.urlToImage} />
+          ${this.renderImage()}
           <h4>
             <a href=${this.props.url} target="_blank" rel="noopener noreferrer"
               >${this.props.title}</a

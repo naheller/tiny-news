@@ -11,6 +11,20 @@ button {
   margin-right: 1rem;
 }
 
+.container .header .header-logo-title {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.container .header .header-logo-title .header-logo {
+  width: 3.25rem;
+  margin-right: 1.25rem;
+}
+
+.container .header .header-logo-title .header-title {
+  margin: 0;
+}
+
 .container .news-list {
   display: flex;
   flex-direction: column;
@@ -32,14 +46,6 @@ button {
   margin: 1.2rem 0;
 }
 
-.card .card-header .image-container .loader {
-  position: absolute;
-}
-
-.card .card-header .image-container .loader.hidden {
-  display: none;
-}
-
 .card .card-header .image-container {
   position: relative;
   margin-bottom: 1.6rem;
@@ -47,6 +53,19 @@ button {
 
 .card .card-header .image-container img {
   border-radius: 0.4rem;
+}
+
+.card .card-header .image-container .loader {
+  position: absolute;
+}
+
+.card .card-header .image-container .loader img {
+  height: 240px;
+  width: 100%;
+}
+
+.card .card-header .image-container .loader.hidden {
+  display: none;
 }
 
 .card .card-body .card-body-footer {

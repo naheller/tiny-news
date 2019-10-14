@@ -6,7 +6,7 @@ import {
 import Card from './Card.js'
 
 const apiBaseUrl = 'https://newsapi.org/v2/'
-const apiKey = NEWS_API_KEY
+const apiKey = '272afd9550db420d809a3903ee6e7bb8'
 const MS_PER_DAY = 1000 * 60 * 60 * 24
 
 export default class App extends Component {
@@ -41,6 +41,7 @@ export default class App extends Component {
     const formattedDate = this.getFormattedDate(twoWeeksAgo)
 
     this.setState({
+      ...this.state,
       loading: true,
       error: ''
     })
@@ -48,25 +49,53 @@ export default class App extends Component {
     fetch(
       searchTerm === ''
         ? `${apiBaseUrl}top-headlines?country=us&apiKey=${apiKey}`
-        : `${apiBaseUrl}everything?q=${searchTerm}&from=${formattedDate}&sortBy=popularity&apiKey=${apiKey}`
+        : `${apiBaseUrl}everything?q=${searchTerm}&from=${formattedDate}&sortBy=relevancy&apiKey=${apiKey}`
     )
       .then(res => res.json())
       .then(json => {
         this.setState({
+          ...this.state,
           articles: json.articles,
           loading: false
         })
       })
       .catch(err => {
         this.setState({
+          ...this.state,
           error: err,
           loading: false
         })
       })
   }
 
+  renderHeader = () => html`
+    <div class="header">
+      <div class="header-logo-title">
+        <object class="header-logo" data="../assets/newspaper.svg"></object>
+        <h2 class="header-title">Tiny News</h2>
+      </div>
+      ${this.renderLinks()}
+    </div>
+  `
+
+  renderLinks = () =>
+    html`
+      <p>
+        Made with${` `}
+        <a href="https://preactjs.com/" target="_blank" rel="noopener referrer">
+          Preact</a
+        >,${` `}
+        <a href="https://milligram.io/" target="_blank" rel="noopener referrer">
+          Milligram</a
+        >, and${` `}
+        <a href="https://newsapi.org/" target="_blank" rel="noopener referrer">
+          News API</a
+        >
+      </p>
+    `
+
   renderNews = () => {
-    const { articles, loading, error } = this.state
+    const { articles = [], loading, error } = this.state
 
     return loading
       ? html`
@@ -76,21 +105,20 @@ export default class App extends Component {
       ? html`
           <h4>Error: ${error}</h4>
         `
-      : articles.map(
+      : articles.length
+      ? articles.map(
           article =>
             html`
               <${Card} ...${article} />
             `
         )
+      : null
   }
 
   render() {
     return html`
       <div class="container">
-        <h2>Tiny News</h2>
-        <p>
-          Made with Preact, Milligram, and News API
-        </p>
+        ${this.renderHeader()}
         <input
           type="text"
           placeholder="Enter a topic"
